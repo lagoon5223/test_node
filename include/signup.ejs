@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>회원가입 페이지</title>
+</head>
+<body>
+    <h1>회원가입 페이지</h1>
+    <form name = "signup-form", method = "post">
+        <input type = "text" id ="username" placeholder = "이름" ><br>
+        <input type = "text" id = "userid" placeholder="아이디"><br>
+        <input type = "password" id = "password" placeholder="비밀번호"><br>
+        <input type = "text" id = "email" placeholder="이메일"><br>
+        <button type="button" onclick ="signup()">회원가입하기</button>
+    </form>
+    <script>
+        const form = document.forms['signup-form'];
+        async function signup(){
+            const res = await axios({
+                method : 'POST',
+                url : '/signup',
+                data :{
+                    username : form.username.value,
+                    userid : form.userid.value,
+                    password : form.password.value,
+                    email : form.email.value,
+                }
+            });
+        };
+    </script>
+</body>
+</html>
