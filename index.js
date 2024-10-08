@@ -31,7 +31,6 @@ const app = express();
 app.set('port', process.env.PORT || 9999);
 app.set('view engine','ejs');
 app.set('views','./include');
-console.log(process.env.PORT)
 
 
 
