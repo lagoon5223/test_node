@@ -100,7 +100,7 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
     update = async (id, userInfo) => {
         try {
             const { password } = userInfo;
-            // console.log(password);
+            console.log(password);
             const newpassword = password;
             // console.log(newpassword);
             return await User.update({
