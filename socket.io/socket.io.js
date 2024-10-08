@@ -15,7 +15,7 @@ module.exports = (server) => {
 
       //* 연결 종료 시
       socket.on('disconnect', () => {
-         console.log('클라이언트 접속 해제', ip, socket.id);
+         // console.log('클라이언트 접속 해제', ip, socket.id);
          clearInterval(socket.interval);
       });
 
