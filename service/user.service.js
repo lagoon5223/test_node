@@ -53,7 +53,7 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
             console.log('연결됨');
             const { user_account, password } = userInfo;
             const finduser = await User.findOne({ where: { user_account } });
-            // console.log(finduser.user_account);
+             console.log(finduser.user_account);
             if (!finduser) {
                 throw new Error("존재하지 않는 아이디입니다.")
             }
