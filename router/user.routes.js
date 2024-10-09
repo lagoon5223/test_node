@@ -6,10 +6,6 @@ const Controller = require('../controller/user.controller');
 
 const controller = new Controller();
 
-
-//메인 페이지
-// router.get('/', controller.main);
-//회원가입 페이지
 user_router.post('/login',controller.login);
 user_router.post('/signup',controller.post_signup);
 user_router.put('/:id',controller.update);

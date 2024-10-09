@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
     <head>
         <title>Hello, World!</title>
@@ -9,4 +9,46 @@
             It's using Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span> and Electron <span id="electron-version"></span>.
         </p>
     </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io.connect('http://localhost:9999', {
+            path: '/socket.io'
+        });
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value;
+            socket.emit('reply', message);  // 'chat message' 이벤트로 메시지 전송
+            input.value = '';
+            return false;
+        }
+        socket.on('reply',(msg)=>{
+          const reply = document.createElement('li');
+          reply.textContent = msg
+          document.getElementById('messages').appendChild(reply);
+        })
+        socket.on('news', function(msg) {
+            console.log(msg)
+            const item = document.createElement('li');
+            item.textContent = msg;  // 수신한 메시지를 리스트에 추가
+            document.getElementById('messages').appendChild(item);
+        });
+    </script>
+</head>
+<body>
+    <h1>Chat Room</h1>
+    <ul id="messages"></ul>
+    <form onsubmit="return sendMessage();">
+        <input id="messageInput" autocomplete="off" /><button>Send</button>
+    </form>
+</body>
 </html>

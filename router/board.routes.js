@@ -8,7 +8,6 @@ const Controller = require('../controller/board.controller');
 
 const controller = new Controller();
 
-
 board_router.post('/pushAlarm',controller.pushAlarm)
 board_router.post('/create',controller.create);
 board_router.get('/find',controller.find);

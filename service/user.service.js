@@ -10,6 +10,7 @@ env.config();
 const secretKey = process.env.JWT_SECRET_KEY;
 
 class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작성
+    
 
     test = async (userInfo) => {
         try {

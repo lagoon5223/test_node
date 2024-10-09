@@ -7,11 +7,17 @@ const boardroutes = require('./board.routes')
 
 
 
-// app.use('/',usersroutes);
+
+
+/**
+ * @swagger
+ * tags:
+ *   name: Admin
+ *   description: 관리자 관련 API
+ */
 index.use('/admin',adminroutes);
 index.use('/user',usersroutes);
 index.use('/board',boardroutes);
 
 
 module.exports = index;
-
