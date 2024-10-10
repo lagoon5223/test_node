@@ -33,11 +33,6 @@ module.exports = (sequelize, DataTypes)=>{
             allowNull: false, //필수값
             unique: true //고유값
         },
-        
-        get_image:{
-            type:DataTypes.STRING(200),
-            allowNull: true,
-        }
     },{
         // 한글을 쓸수 있게 해준다.(한글 저장)
         tableName: 'user',
@@ -48,6 +43,7 @@ module.exports = (sequelize, DataTypes)=>{
     
     User.associate = (db) => { // 유저를 1로 정의
         User.hasMany(db.Board, {foreignKey : "user_id"});
+        User.hasMany(db.Image, {foreignKey : "user_id"});
         
     };
     return User;

@@ -22,6 +22,8 @@ const controller = new Controller();
  *               image:
  *                 type: string
  *                 format: binary
+ *               filename:
+ *                 type: string
  *             required:
  *               - image
  *     responses:
@@ -36,15 +38,28 @@ const controller = new Controller();
  *                   type: integer
  *                 message:
  *                   type: string
- *                 url:
- *                   type: string
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: integer
+ *                     filename:
+ *                       type: string
+ *                     path:
+ *                       type: string
+ *                     title:
+ *                       type: string
  *             examples:
  *               example1:
  *                 summary: 성공적인 응답 예시
  *                 value:
  *                   status: 200
- *                   message: "Image uploaded successfully"
- *                   url: "https://example.com/images/uploaded_image.jpg"
+ *                   message: "success"
+ *                   data:
+ *                     id: 1
+ *                     filename: "test_img1728529333389.png"
+ *                     path: "uploads/test_img1728529333389.png"
+ *                     title: "Sample Title"
  *       400:
  *         description: 이미지 업로드 실패
  *         content:
@@ -61,10 +76,10 @@ const controller = new Controller();
  *                 summary: 실패 응답 예시
  *                 value:
  *                   status: 400
- *                   message: "Invalid image format"
+ *                   message: "server error"
  */
 image_router.post('/upload',upload.single('image'),controller.test_image);
-// router.post('/checkPW',controller.checkPW);
 
+image_router.get('/find',controller.get_image)
 
 module.exports = image_router;

@@ -15,7 +15,7 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 db.User = User(sequelize, Sequelize)
 db.Admin = Admin(sequelize, Sequelize)
 db.Board = Board(sequelize, Sequelize)//테이블을 만들어 줄 수 있다.
-db.image = Image(sequelize,Sequelize)
+db.Image = Image(sequelize,Sequelize)
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {

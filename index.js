@@ -5,6 +5,8 @@ const { sequelize } = require('./models/index');
 const index = require('./router/index.js');
 const http = require('http');
 const api = require("./router");
+const cors = require('cors');
+
 process.env.firebase = './';
 
 const SocketIo = require('./socket.io/socket.io.js');
@@ -43,7 +45,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // 메인페이지
-
+app.use('/upload', express.static(path.join(__dirname, 'uploads')));
+app.use(cors());
 app.use('/', index);
 app.get('/chat', (req, res) => {
   res.render('chat');
