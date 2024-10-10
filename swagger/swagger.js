@@ -17,8 +17,9 @@ const options = {
       },
     ],
   },
-  apis: ["../router/*.routes.js"], //Swagger 파일 연동
+  apis: ['./router/*.routes.js', './router/*.js'], //Swagger 파일 연동
 }
 const specs = swaggereJsDoc(options)
-console.log(JSON.stringify(specs, null, 2)); 
+console.log("swagger 연결 완료")
+// console.log(JSON.stringify(specs, null, 2)); 
 module.exports = { swaggerUi, specs }

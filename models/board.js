@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes)=>{
         writing:{
             type:DataTypes.STRING(1000),
             allowNull : false,
-        }
+        },
         
     },{
         // 한글을 쓸수 있게 해준다.(한글 저장)

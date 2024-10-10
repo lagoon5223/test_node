@@ -148,11 +148,10 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
             if (!file) {
                 throw new Error('파일이 없습니다.');
             }
-            
-            return {
+            return User.create({
                 filename: file.filename,
                 path: file.path,
-            };
+            });
         } catch (error) {
             throw error; // 에러를 상위로 전달
         }

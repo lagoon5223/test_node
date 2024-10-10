@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes)=>{
             unique: true //고유값
         },
         
+        get_image:{
+            type:DataTypes.STRING(200),
+            allowNull: true,
+        }
     },{
         // 한글을 쓸수 있게 해준다.(한글 저장)
         tableName: 'user',
