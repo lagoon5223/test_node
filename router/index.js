@@ -13,18 +13,26 @@ const imageroutes = require('./image.routes')
 /**
  * @swagger
  * tags:
- *   name: Admin
- *   description: 관리자 관련 API
+ *   name: 관리자
  */
 index.use('/admin',adminroutes);
 /**
  * @swagger
  * tags:
- *   name: User
- *   description: 유저 관련 API
+ *   name: 유저
  */
 index.use('/user',usersroutes);
+/**
+ * @swagger
+ * tags:
+ *   name: 게시글
+ */
 index.use('/board',boardroutes);
+/**
+ * @swagger
+ * tags:
+ *   name: 이미지
+ */
 index.use('/image',imageroutes);
 
 
