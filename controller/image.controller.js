@@ -24,6 +24,16 @@ class image_controller {
             res.status(200).json({ status: 404, message: 'server error', data: e.message })
         }
     }
+    all_image = async(req,res)=>{
+        try {
+            
+            const result = await this.imageservice.all_image();
+            console.log("결과값 : ",result)
+            res.status(200).json({ status: 200, message: 'success', data : result})
+        } catch (e) {
+            res.status(200).json({ status: 404, message: 'server error', data: e.message })
+        }
+    }
     
 }
 

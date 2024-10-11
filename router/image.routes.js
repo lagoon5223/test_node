@@ -82,4 +82,6 @@ image_router.post('/upload',upload.single('image'),controller.test_image);
 
 image_router.get('/find',controller.get_image)
 
+image_router.get('/all',controller.all_image)
+
 module.exports = image_router;
