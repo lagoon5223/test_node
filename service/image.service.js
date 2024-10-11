@@ -14,12 +14,12 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
 
     test_image = async (file) => {
         try {
-            
+
             // 파일 이름과 확장자 분리
             //console.log(file)
             const ext = path.extname(file.originalname); // 확장자 추출
             const baseName = path.basename(file.originalname, ext); // 파일 이름 (확장자 제외)
-            const timeset = Math.floor(Date.now()/10000);
+            const timeset = Math.floor(Date.now() / 10000);
             // 새로운 파일 이름 생성
             const newFileName = `${baseName}${timeset}${ext}`; // 예: test_img_1634748000000.png
             console.log(newFileName)
@@ -39,19 +39,28 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
 
     get_image = async (Info) => {
         try {
-            const { image_id } = Info;
-            
+            const { filename } = Info;
+            console.log(filename)
             const fineimage = await Image.findOne({
-                where: { image_id }
+                where: { filename }
             })
             const imageUrl = `http://localhost:9999/upload/${fineimage.filename}`;
             return imageUrl; // URL 반환
 
-
-            return imagePath;
         } catch (e) {
             throw e;
         }
+
+    }
+
+    all_image = async (Info) => {
+        try {
+            const findallimage = await Image.findAll({})
+            return findallimage;
+        } catch (e) {
+            throw e;
+        }
+
 
     }
 }
