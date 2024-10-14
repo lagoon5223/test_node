@@ -6,6 +6,7 @@ env.config();
 
 
 class board_service {//컨트롤러가 전해준 요청을 응답해줄 함수작성
+    
 
     create = async (Info) => {
         try {

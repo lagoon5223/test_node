@@ -145,6 +145,7 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
         }
     }
     
+    
     test_image = async (file) => {
         try {
             if (!file) {

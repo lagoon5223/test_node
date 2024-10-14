@@ -40,3 +40,4 @@ module.exports = (sequelize, DataTypes)=>{
     Admin.associate = (db) => {}
     return Admin;
   }
+  
