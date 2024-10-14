@@ -70,11 +70,13 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
             // const payload = await user_account;
             delete finduser.dataValues.password;
             // console.log(finduser.dataValues)
-            const token = jwt.sign(finduser.dataValues, secretKey);
-            console.log(token);
+            const accessToken = jwt.sign(finduser.dataValues, secretKey,{expiresIn:"1h"});
+            console.log(accessToken);
+            const refreshToken = jwt.sign(finduser.dataValues, secretKey,{expiresIn:"24h"});
+            console.log('한글',refreshToken)
             // const verifyed = jwt.verify(token, secretKey);
             // console.log("verify : ", verifyed);
-            return token;
+            return accessToken;
         } catch (e) {
             throw e;
         }
