@@ -29,7 +29,7 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
             // const payload = await user_account;
             delete finduser.dataValues.password;
             // console.log(finduser.dataValues)
-            const token = jwt.sign(finduser.dataValues, secretKey);
+            const token = jwt.sign(finduser.dataValues, secretKey,{expiresIn:"1h"});
             // console.log(token);
             const verifyed = jwt.verify(token, secretKey);
             // console.log("verify : ", verifyed);

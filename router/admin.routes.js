@@ -30,7 +30,7 @@ const controller = new Controller();
  *                 password: "1234"
  *     responses:
  *       200:
- *         description: 회원가입 성공
+ *         description: 로그인 성공
  *         content:
  *           application/json:
  *             schema:
@@ -50,7 +50,7 @@ const controller = new Controller();
  *                   message: "success"
  *                   data: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInVzZXJfYWNjb3VudCI6InRlc3QyIiwiZW1haWwiOiIxMjM0NUBnbWFpbC5jb20iLCJjcmVhdGVkQXQiOiIyMDI0LTEwLTEwVDAyOjQyOjQ0LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDI0LTEwLTEwVDAyOjQyOjQ0LjAwMFoiLCJpYXQiOjE3Mjg1MjgxNzF9.OV4_pgZS3usEb0lmdraEsFWo94YAV2OaRwyMw_1NwJE"
  *       400:
- *         description: 회원가입 실패
+ *         description: 로그인 실패
  *         content:
  *           application/json:
  *             schema:
@@ -110,20 +110,19 @@ admin_router.post('/admin_login', controller.admin_login);
  *                   properties:
  *                     user_id:
  *                       type: integer
+ *                       example: 1
  *                     username:
  *                       type: string
+ *                       example: "admin"
  *                     user_account:
  *                       type: string
+ *                       example: "test2"
  *                     password:
  *                       type: string
+ *                       example: "1234"
  *                     email:
  *                       type: string
- *                     updatedAt:
- *                       type: string
- *                       format: date-time
- *                     createdAt:
- *                       type: string
- *                       format: date-time
+ *                       example: "12345@gmail.com"
  *       400:
  *         description: 회원가입 실패
  *         content:
@@ -133,8 +132,10 @@ admin_router.post('/admin_login', controller.admin_login);
  *               properties:
  *                 status:
  *                   type: integer
+ *                   example: 200
  *                 message:
  *                   type: string
+ *                   example: "server error"
  */
 admin_router.post('/admin_signup', controller.admin_signup);
 
