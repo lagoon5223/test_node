@@ -29,22 +29,22 @@ board_router.post('/create',controller.create);
  *               email:
  *                 type: string
  *           example:
- *             username: "admin"
- *             user_account: "test2"
- *             password: "1234"
- *             email: "12345@gmail.com"
+ *             token: "fu5veJQPiUHuEw2BQFN5IF:APA91bG2KAzfO9RrNdkHlDFim0husaK_ttxIKMWJXzcjPn36tuIdWQTOf6QS82pIW8AaxDlN32-ttk9_Ud9IxhFwHzxSjXrHy3i5RFRqCJCy5-zRV_PTV_vT90XHwJrFz25a8d-1CZci"
+ * 
  *     responses:
  *       200:
- *         description: 회원가입 성공
+ *         description: 푸쉬 알람 성공
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
  *                 status:
- *                   type: integer
+ *                   type: 200
  *                 message:
- *                   type: string
+ *                   type: "success"
+ *                 data:
+ *                   type: "projects/node-test-c0a04/messages/ae5b8915-8d7c-4147-8d95-ee9f912646da"
  *       400:
  *         description: 회원가입 실패
  *         content:
