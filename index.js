@@ -7,7 +7,7 @@ const http = require('http');
 const api = require("./router");
 const cors = require('cors');
 //cors 설정
-const all_cors = ['http://http://3.39.253.53/']
+// const all_cors = ['http://3.39.253.53/*']
 process.env.firebase = './';
 
 const SocketIo = require('./socket.io/socket.io.js');
@@ -47,7 +47,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // 메인페이지
 app.use(cors({
-  origin : all_cors,
+  origin : '*',
 }));
 app.use('/upload', express.static(path.join(__dirname, 'uploads')));
 
