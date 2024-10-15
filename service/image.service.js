@@ -6,7 +6,7 @@ const env = require('dotenv');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
-
+const cors = require('cors');
 env.config();
 const secretKey = process.env.JWT_SECRET_KEY;
 
