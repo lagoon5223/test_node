@@ -13,7 +13,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:9999", // 요청 URL
+        url: "http://3.39.253.53:9999", // 요청 URL
       },
     ],
   },

@@ -88,19 +88,53 @@ admin_router.post('/admin_login', controller.admin_login);
  *                 type: string
  *               email:
  *                 type: string
- *           examples:
- *             example1:
- *               summary: 예시 회원가입 데이터
- *               value:
- *                 username: "admin"
- *                 user_account: "test2"
- *                 password: "1234"
- *                 email: "12345@gmail.com"
+ *           example:
+ *             username: "admin"
+ *             user_account: "test2"
+ *             password: "1234"
+ *             email: "12345@gmail.com"
  *     responses:
  *       200:
  *         description: 회원가입 성공
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     user_id:
+ *                       type: integer
+ *                     username:
+ *                       type: string
+ *                     user_account:
+ *                       type: string
+ *                     password:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     updatedAt:
+ *                       type: string
+ *                       format: date-time
+ *                     createdAt:
+ *                       type: string
+ *                       format: date-time
  *       400:
  *         description: 회원가입 실패
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
  */
 admin_router.post('/admin_signup', controller.admin_signup);
 
