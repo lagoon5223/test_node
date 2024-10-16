@@ -15,7 +15,7 @@ class board_controller {
 
     find = async (req, res) => {
         try {
-            const result = await this.boardservice.find(req.query);
+            const result = await this.boardservice.find(req.params);
 
             res.status(200).json({ status: 200, message: 'success', data: result })
         } catch (e) {

@@ -47,7 +47,7 @@ const verifyToken = (req, res, next, type) => {
       console.log("회원과 관리자 모두 통과")
       next()
     } else {
-      throw new Error("아이디가 없음")
+      throw new Error("어드민 권한 없음")
     }
   }
   // 인증 실패 

@@ -15,6 +15,9 @@ const options = {
       {
         url: "http://43.203.211.103", // 요청 URL
       },
+      {
+        url: "http://localhost:9999",
+      }
     ],
   },
   apis: ['./router/*.routes.js', './router/*.js', './api/*/*.routes.js'], //Swagger 파일 연동

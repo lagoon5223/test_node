@@ -23,22 +23,23 @@ class board_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
 //게시글 단일 조회
     find = async (query) => {//외래키 = user_id
         try {
+            console.log(query)
             const { board_number } = query;
-            // console.log(board_number);
+            console.log(board_number);
             const userid = await Board.findOne({
                 where: { board_number }
             })
             // console.log(userid.user_id);
 
-            const result = await Board.findAll({
-                where: { user_id: userid.user_id },
-                include: [{
-                    model: User,
+            // const result = await Board.findAll({
+            //     where: { user_id: userid.user_id },
+            //     include: [{
+            //         model: User,
 
-                    // attributes: ["user_id"],
-                }]
-            })
-            return result;
+            //         // attributes: ["user_id"],
+            //     }]
+            // })
+            return userid;
         } catch (e) {
             throw e;
         }

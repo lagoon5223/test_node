@@ -27,7 +27,7 @@ const controller = new Controller();
  *               username:
  *                 type: string
  *               writing:
- *                 type:string
+ *                 type: string
  *           examples:
  *             example1:
  *               summary: 예시 데이터
@@ -70,7 +70,7 @@ const controller = new Controller();
  *                   status: 400
  *                   message: "server error"
  */
-board_router.post('/create',controller.create);
+board_router.post('/create', controller.create);
 /**
  * @swagger
  * /board/find/{board_number}:
@@ -140,12 +140,12 @@ board_router.post('/create',controller.create);
  *                   status: 400
  *                   message: "server error"
  */
-board_router.get('/find',controller.find);
+board_router.get('/find/:board_number',controller.find);
 /**
  * @swagger
- * /board/admincrate:
+ * /board/admincreate:
  *   post:
- *     tags: [게시글]
+ *     tags: [공지사항]
  *     summary: 공지사항 생성
  *     requestBody:
  *       required: true
@@ -161,7 +161,7 @@ board_router.get('/find',controller.find);
  *               username:
  *                 type: string
  *               writing:
- *                 type:string
+ *                 type: string
  *           examples:
  *             example1:
  *               summary: 예시 데이터
@@ -204,7 +204,7 @@ board_router.get('/find',controller.find);
  *                   status: 400
  *                   message: "server error"
  */
-board_router.post('/admincreate',UserAuth,controller.admincreate)
+board_router.post('/admincreate', UserAuth, controller.admincreate);
 /**
  * @swagger
  * /board/pushAlarm:
