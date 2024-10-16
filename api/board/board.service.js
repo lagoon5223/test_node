@@ -20,7 +20,7 @@ class board_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
     }
 
 
-//게시글 전체 조회
+//게시글 단일 조회
     find = async (query) => {//외래키 = user_id
         try {
             const { board_number } = query;

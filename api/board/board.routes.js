@@ -79,7 +79,7 @@ board_router.post('/create',controller.create);
  *     summary: 게시글 단일 조회
  *     parameters:
  *       - name: board_number
- *         in: query
+ *         in: path
  *         required: true
  *         description: 게시글 번호
  *         schema:
@@ -143,7 +143,7 @@ board_router.post('/create',controller.create);
 board_router.get('/find',controller.find);
 /**
  * @swagger
- * /board/create:
+ * /board/admincrate:
  *   post:
  *     tags: [게시글]
  *     summary: 공지사항 생성
