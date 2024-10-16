@@ -7,7 +7,7 @@ const { EMAIL_SERVICE, USER, PASSWORD } = process.env;
 
 
 class mail_service {
-    make_mail{
+    create_mail = async (info)=>{
     try {
 
     } catch (e) {
