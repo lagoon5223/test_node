@@ -2,7 +2,7 @@ const express = require('express');
 const image_router = express.Router();
 const {UserAuth} = require('../middleware/middleware1');
 const upload = require('../middleware/multer')
-const Controller = require('../controller/image.controller');
+const Controller = require('./image.controller');
 
 const controller = new Controller();
 

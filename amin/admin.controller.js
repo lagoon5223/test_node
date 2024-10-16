@@ -1,4 +1,4 @@
-const Service = require('../service/admin.service.js')
+const Service = require('./admin.service.js')
 
 class admin_controller {
     adminservice = new Service();

@@ -1,9 +1,9 @@
 const express = require('express');
 const index = express.Router();
-const usersroutes = require('./user.routes')
-const adminroutes = require('./admin.routes')
-const boardroutes = require('./board.routes')
-const imageroutes = require('./image.routes')
+const usersroutes = require('../user/user.routes')
+const adminroutes = require('../amin/admin.routes')
+const boardroutes = require('../board/board.routes')
+const imageroutes = require('../image/image.routes')
 
 
 

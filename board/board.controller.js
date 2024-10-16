@@ -1,4 +1,4 @@
-const Service = require('../service/board.service.js')
+const Service = require('./board.service.js')
 
 class board_controller {
     boardservice = new Service();

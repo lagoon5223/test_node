@@ -1,4 +1,4 @@
-const Service = require('../service/image.service.js')
+const Service = require('./image.service.js')
 
 class image_controller {
     imageservice = new Service();

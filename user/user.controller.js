@@ -1,5 +1,5 @@
 
-const Service = require('../service/user.service.js');
+const Service = require('./user.service.js');
 
 class user_controller {//클라이언트의 요청을 가공해 서비스에 전달
     userservice = new Service();

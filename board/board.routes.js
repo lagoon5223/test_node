@@ -4,7 +4,7 @@ const {AdminAuth} = require('../middleware/middleware1')
 const {UserAuth} = require('../middleware/middleware1')
 
 
-const Controller = require('../controller/board.controller');
+const Controller = require('./board.controller');
 
 const controller = new Controller();
 /**
@@ -141,6 +141,69 @@ board_router.post('/create',controller.create);
  *                   message: "server error"
  */
 board_router.get('/find',controller.find);
+/**
+ * @swagger
+ * /board/create:
+ *   post:
+ *     tags: [게시글]
+ *     summary: 공지사항 생성
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               mainName:
+ *                 type: string
+ *               user_id:
+ *                 type: integer
+ *               username:
+ *                 type: string
+ *               writing:
+ *                 type:string
+ *           examples:
+ *             example1:
+ *               summary: 예시 데이터
+ *               value:
+ *                 mainName: "게시글 제목"
+ *                 user_id: 1
+ *                 username: "test1234"
+ *                 writing: "게시글 내용"
+ *     responses:
+ *       200:
+ *         description: 성공 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 200
+ *                   message: "success"
+ *       400:
+ *         description: 실패 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 400
+ *                   message: "server error"
+ */
 board_router.post('/admincreate',UserAuth,controller.admincreate)
 /**
  * @swagger
