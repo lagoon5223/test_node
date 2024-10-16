@@ -1,4 +1,4 @@
-const { Admin } = require('../models/index');
+const { Admin } = require('../../models/index');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); // jwt 모듈 불러오기
 const env = require('dotenv');

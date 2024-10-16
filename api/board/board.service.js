@@ -1,5 +1,5 @@
-const { Board } = require('../models/index');
-const { User } = require('../models/index');
+const { Board } = require('../../models/index');
+const { User } = require('../../models/index');
 const admin = require('firebase-admin');
 const env = require('dotenv');
 env.config();
@@ -7,7 +7,7 @@ env.config();
 
 class board_service {//컨트롤러가 전해준 요청을 응답해줄 함수작성
     
-
+//게시글 생성
     create = async (Info) => {
         try {
             const { mainName, username, writing } = Info;
@@ -20,7 +20,7 @@ class board_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
     }
 
 
-
+//게시글 전체 조회
     find = async (query) => {//외래키 = user_id
         try {
             const { board_number } = query;
@@ -44,15 +44,9 @@ class board_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
         }
 
     }
-    admincreate = async (adminInfo) => {
-        try {
-            const result = await Board.create(adminInfo);
-            return result;
-        } catch (e) {
-            throw e;
-        }
-    }
 
+    
+//푸쉬 알람
     pushAlarm = async (Info) => {
         try {
             const target_token =Info.token;
@@ -72,6 +66,15 @@ class board_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
             return response; // 서비스에서 결과를 반환
         } catch (e) {
             console.error('Error sending message: ', e);
+            throw e;
+        }
+    }
+    
+    admincreate = async (adminInfo) => {
+        try {
+            const result = await Board.create(adminInfo);
+            return result;
+        } catch (e) {
             throw e;
         }
     }

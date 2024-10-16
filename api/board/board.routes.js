@@ -1,7 +1,7 @@
 const express = require('express');
 const board_router = express.Router();
-const {AdminAuth} = require('../middleware/middleware1')
-const {UserAuth} = require('../middleware/middleware1')
+const {AdminAuth} = require('../../middleware/middleware1')
+const {UserAuth} = require('../../middleware/middleware1')
 
 
 const Controller = require('./board.controller');
@@ -73,7 +73,7 @@ const controller = new Controller();
 board_router.post('/create',controller.create);
 /**
  * @swagger
- * /board/find:
+ * /board/find/{board_number}:
  *   get:
  *     tags: [게시글]
  *     summary: 게시글 단일 조회
