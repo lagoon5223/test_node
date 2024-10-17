@@ -35,7 +35,7 @@ class mail_service {
             const result = await transporter.sendMail(mailOption, (error, info) => {
                 console.log(result)
                 if (error) {
-                    throw new Error(error);
+                    throw error;
                 } else {
                     console.log('발송되었음.')
                 }
