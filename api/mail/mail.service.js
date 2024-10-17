@@ -30,6 +30,7 @@ class mail_service {
                 subject: subject,
                 html: htmlstyle
             }
+            console.log(EMAIL_SERVICE, USER, PASSWORD )
             // console.log("?")
             // console.log(mailOption)
             const result = await transporter.sendMail(mailOption, (error, info) => {
