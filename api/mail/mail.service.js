@@ -41,7 +41,7 @@ class mail_service {
 
             });
             const memo_mail = await Mail.create(info)
-            return result, memo_mail;
+            return {result, memo_mail};
 
         } catch (e) {
             throw e;

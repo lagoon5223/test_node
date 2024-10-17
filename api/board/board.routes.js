@@ -9,7 +9,7 @@ const Controller = require('./board.controller');
 const controller = new Controller();
 /**
  * @swagger
- * /board/create:
+ * /api/board/create:
  *   post:
  *     tags: [게시글]
  *     summary: 게시글 생성

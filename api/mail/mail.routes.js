@@ -2,7 +2,7 @@ const express = require('express');
 const mail_router = express.Router();
 const Controller = require('./mail.controller');
 
-const controller = new Controller;
+const controller = new Controller();
 
 /**
  * @swagger
@@ -68,7 +68,7 @@ mail_router.post('/',controller.create_mail)
 
 /**
  * @swagger
- * /api/mail/find:
+ * /api/mail/:
  *   get:
  *     tags: [메일]
  *     summary: 메일 전체 조회
@@ -113,11 +113,11 @@ mail_router.post('/',controller.create_mail)
  *                   status: 400
  *                   message: "server error"
  */
-mail_router.get('/find',controller.find_all_mail)
+mail_router.get('/',controller.find_all_mail)
 
 /**
  * @swagger
- * /api/mail/find/{mail_number}:
+ * /api/mail/{mail_number}:
  *   get:
  *     tags: [메일]
  *     summary: 메일 단일 조회
@@ -162,9 +162,9 @@ mail_router.get('/find',controller.find_all_mail)
  *                   status: 400
  *                   message: "server error"
  */
-mail_router.get('/find/:mail_number', controller.find_mail)
+mail_router.get('/:mail_number', controller.find_mail)
 
-mail_router.delete('/')
+mail_router.delete('/:mail_number')
 
 
 module.exports = mail_router
