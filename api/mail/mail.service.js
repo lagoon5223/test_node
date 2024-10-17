@@ -7,7 +7,7 @@ const { User } = require('../../models/index')
 
 
 env.config();
-const { EMAIL_SERVICE, USER, PASSWORD } = process.env;
+const { EMAIL_SERVICE, MY_EMAIL, PASSWORD } = process.env;
 
 
 class mail_service {
@@ -20,21 +20,21 @@ class mail_service {
             const transporter = nodemailer.createTransport({ // 보내는 이메일
                 service: EMAIL_SERVICE,
                 auth: {
-                    user: USER,
+                    user: MY_EMAIL,
                     pass: PASSWORD
                 }
             });
             const mailOption = {
-                from: USER,
+                from: MY_EMAIL,
                 to: to_email,
                 subject: subject,
                 html: htmlstyle
             }
-            console.log(EMAIL_SERVICE, USER, PASSWORD )
+            // console.log(EMAIL_SERVICE, MY_EMAIL, PASSWORD )
             // console.log("?")
             // console.log(mailOption)
             const result = await transporter.sendMail(mailOption, (error, info) => {
-                console.log(result)
+                
                 if (error) {
                     throw error;
                 } else {
