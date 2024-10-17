@@ -7,9 +7,9 @@ const options = {
     openapi: "3.0.0",
     info: {
       version: "1.0.0",
-      title: "test_node",
+      title: "API TEST",
       description:
-        "프로젝트 설명 Node.js Swaager swagger-jsdoc 방식 RestFul API 클라이언트 UI",
+        "API 테스트 문서입니다.",
     },
     servers: [
       {
