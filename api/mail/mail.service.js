@@ -33,15 +33,17 @@ class mail_service {
             // console.log("?")
             // console.log(mailOption)
             const result = await transporter.sendMail(mailOption, (error, info) => {
+                console.log(result)
                 if (error) {
-                    throw error;
+                    throw new Error(error);
                 } else {
                     console.log('발송되었음.')
                 }
 
             });
+
             const memo_mail = await Mail.create(info)
-            return {result, memo_mail};
+            return { result, memo_mail };
 
         } catch (e) {
             throw e;
@@ -60,24 +62,24 @@ class mail_service {
             throw e;
         }
     }
-    find_all_mail = async (info)=>{
-        try{
-            const {user_id}= info;
-            if(!user_id){
+    find_all_mail = async (info) => {
+        try {
+            const { user_id } = info;
+            if (!user_id) {
                 const result = await Mail.findAll({
 
                 })
                 return result;
-            }else{
+            } else {
                 const result = await Mail.findAll({
-                    include:[{
-                        model : User,
-                        where :{user_id}
-                    }]                    
+                    include: [{
+                        model: User,
+                        where: { user_id }
+                    }]
                 })
                 return result;
             }
-        }catch(e){
+        } catch (e) {
             throw e;
         }
     }
