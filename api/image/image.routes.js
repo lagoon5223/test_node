@@ -8,7 +8,7 @@ const controller = new Controller();
 
 /**
  * @swagger
- * /image/upload:
+ * /api/image/upload:
  *   post:
  *     tags: [이미지]
  *     summary: 이미지 업로드
@@ -81,7 +81,7 @@ const controller = new Controller();
 image_router.post('/upload',upload.single('image'),controller.test_image);
 /**
  * @swagger
- * /image/find:
+ * /api/image/find:
  *   post:
  *     tags: [이미지]
  *     summary: 이미지 찾기

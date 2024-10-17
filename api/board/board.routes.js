@@ -73,7 +73,7 @@ const controller = new Controller();
 board_router.post('/create', controller.create);
 /**
  * @swagger
- * /board/find/{board_number}:
+ * /api/board/find/{board_number}:
  *   get:
  *     tags: [게시글]
  *     summary: 게시글 단일 조회
@@ -143,9 +143,9 @@ board_router.post('/create', controller.create);
 board_router.get('/find/:board_number',controller.find);
 /**
  * @swagger
- * /board/admincreate:
+ * /api/board/admincreate:
  *   post:
- *     tags: [공지사항]
+ *     tags: [게시글]
  *     summary: 공지사항 생성
  *     requestBody:
  *       required: true
@@ -207,7 +207,7 @@ board_router.get('/find/:board_number',controller.find);
 board_router.post('/admincreate', UserAuth, controller.admincreate);
 /**
  * @swagger
- * /board/pushAlarm:
+ * /api/board/pushAlarm:
  *   post:
  *     tags: [게시글]
  *     summary: 게시글 알림 푸쉬

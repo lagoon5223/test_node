@@ -4,4 +4,167 @@ const Controller = require('./mail.controller');
 
 const controller = new Controller;
 
+/**
+ * @swagger
+ * /api/mail/:
+ *   post:
+ *     tags: [메일]
+ *     summary: 메일 생성
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               subject:
+ *                 type: string
+ *               user_id:
+ *                 type: integer
+ *               to_email:
+ *                 type: string
+ *           examples:
+ *             example1:
+ *               summary: 예시 데이터
+ *               value:
+ *                 subject: "테스트 이메일 제목"
+ *                 user_id: 1
+ *                 to_email: "example@gmail.com"
+ *     responses:
+ *       200:
+ *         description: 성공 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 200
+ *                   message: "success"
+ *       400:
+ *         description: 실패 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 400
+ *                   message: "server error"
+ */
+mail_router.post('/',controller.create_mail)
 
+/**
+ * @swagger
+ * /api/mail/find:
+ *   get:
+ *     tags: [메일]
+ *     summary: 메일 전체 조회
+ *     parameters:
+ *       - name: user_id
+ *         in: query
+ *         required: false
+ *         description: user_id
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: 성공 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 200
+ *                   message: "success"
+ *       400:
+ *         description: 실패 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 400
+ *                   message: "server error"
+ */
+mail_router.get('/find',controller.find_all_mail)
+
+/**
+ * @swagger
+ * /api/mail/find/{mail_number}:
+ *   get:
+ *     tags: [메일]
+ *     summary: 메일 단일 조회
+ *     parameters:
+ *       - name: mail_number
+ *         in: path
+ *         required: true
+ *         description: 메일 번호
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: 성공 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 200
+ *                   message: "success"
+ *       400:
+ *         description: 실패 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 400
+ *                   message: "server error"
+ */
+mail_router.get('/find/:mail_number', controller.find_mail)
+
+mail_router.delete('/')
+
+
+module.exports = mail_router

@@ -7,7 +7,7 @@ const controller = new Controller();
 
 /**
  * @swagger
- * /admin/admin_login:
+ * /api/admin/admin_login:
  *   post:
  *     tags: [관리자]
  *     summary: 관리자 로그인
@@ -71,7 +71,7 @@ admin_router.post('/admin_login', controller.admin_login);
 
 /**
  * @swagger
- * /admin/admin_signup:
+ * /api/admin/admin_signup:
  *   post:
  *     tags: [관리자]
  *     summary: 관리자 회원가입

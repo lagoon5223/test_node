@@ -4,6 +4,7 @@ const usersroutes = require('../api/user/user.routes')
 const adminroutes = require('../api/admin/admin.routes')
 const boardroutes = require('../api/board/board.routes')
 const imageroutes = require('../api/image/image.routes')
+const mailroutes = require('../api/mail/mail.routes')
 
 
 
@@ -35,6 +36,11 @@ index.use('/board',boardroutes);
  *   name: 이미지
  */
 index.use('/image',imageroutes);
-
+/**
+ * @swagger
+ * tags:
+ *   name: 메일
+ */
+index.use('/mail',mailroutes);
 
 module.exports = index;

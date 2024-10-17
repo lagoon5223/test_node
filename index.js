@@ -25,7 +25,7 @@ admin.initializeApp({
 const app = express();
 const { swaggerUi, specs } = require("./swagger/swagger");
 
-app.use("/api", api);
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.set('port', process.env.PORT || 9999);
@@ -51,7 +51,7 @@ app.use(cors({
 }));
 app.use('/upload', express.static(path.join(__dirname, 'uploads')));
 
-app.use('/', index);
+app.use('/api', index);
 app.get('/chat', (req, res) => {
   res.render('chat');
 });

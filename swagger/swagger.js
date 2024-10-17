@@ -13,10 +13,10 @@ const options = {
     },
     servers: [
       {
-        url: "http://43.203.211.103", // 요청 URL
+        url: "http://localhost:9999", // 요청 URL
       },
       {
-        url: "http://localhost:9999",
+        url: "http://43.203.211.103",
       }
     ],
   },
