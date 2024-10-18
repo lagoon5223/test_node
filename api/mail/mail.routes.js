@@ -9,7 +9,7 @@ const controller = new Controller();
  * /api/mail/:
  *   post:
  *     tags: [메일]
- *     summary: 메일 생성
+ *     summary: 메일 전송
  *     requestBody:
  *       required: true
  *       content:
@@ -29,7 +29,6 @@ const controller = new Controller();
  *               value:
  *                 subject: "테스트 이메일 제목"
  *                 user_id: 1
- *                 to_email: "example@gmail.com"
  *     responses:
  *       200:
  *         description: 성공 예시
