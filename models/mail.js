@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes)=>{
           type:DataTypes.STRING(20),
           allowNull: false, //필수값
       },
-         to_email: { 
-            type:DataTypes.STRING(30),
-            allowNull: false,
-        },
         writing:{
             type:DataTypes.STRING(1000),
             allowNull : true,

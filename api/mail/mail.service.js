@@ -16,6 +16,8 @@ class mail_service {
             const { subject, to_email, user_id } = info;
             // console.log(subject,to_email,user_id,writing)
             // console.log(typeof(EMAIL_SERVICE, USER, PASSWORD))
+            const finduser = await User.findOne({ where: { user_id } })
+            console.log(finduser)
             const htmlstyle = fs.readFileSync('./api/mail/mailstyle.html', 'utf-8');
             const transporter = nodemailer.createTransport({ // 보내는 이메일
                 service: EMAIL_SERVICE,
@@ -26,7 +28,7 @@ class mail_service {
             });
             const mailOption = {
                 from: MY_EMAIL,
-                to: to_email,
+                to: finduser.email,
                 subject: subject,
                 html: htmlstyle
             }
@@ -34,7 +36,7 @@ class mail_service {
             // console.log("?")
             // console.log(mailOption)
             const result = await transporter.sendMail(mailOption, (error, info) => {
-                
+
                 if (error) {
                     throw new Error("server error");
                 } else {
@@ -84,31 +86,31 @@ class mail_service {
             throw e;
         }
     }
-    upload_mail = async(info)=>{
-        try{
-            const {mail_number,subject,to_email,user_id}=info;
-            if(!subject)throw new Error("제목이 없습니다");
-            if(!to_email)throw new Error("수신 이메일이 없습니다.")
+    upload_mail = async (info) => {
+        try {
+            const { mail_number, subject, to_email, user_id } = info;
+            if (!subject) throw new Error("제목이 없습니다");
+            if (!to_email) throw new Error("수신 이메일이 없습니다.")
             // console.log(info)
-            const update = await Mail.update({subject,to_email,user_id},{
-                where:{mail_number},
+            const update = await Mail.update({ subject, to_email, user_id }, {
+                where: { mail_number },
             })
             const result = await Mail.findOne({
-                where:{mail_number},
+                where: { mail_number },
             })
             return result;
-        }catch(e){
+        } catch (e) {
             throw e;
         }
     }
-    delete_mail = async(info)=>{
-        try{
-            const {mail_number} = info;
+    delete_mail = async (info) => {
+        try {
+            const { mail_number } = info;
             const result = await Mail.destroy({
-                where:{mail_number},
+                where: { mail_number },
             })
             return result;
-        }catch(e){
+        } catch (e) {
             throw e;
         }
     }
