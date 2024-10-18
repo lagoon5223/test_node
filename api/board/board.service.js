@@ -19,6 +19,23 @@ class board_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
 
     }
 
+    find_all = async(query)=>{
+        try{
+            const {user_id} = query;
+            if(!user_id)return await Board.findAll();
+            const findboard = await Board.findAll({
+                include:[{
+                    model : User,
+                    where:{user_id},
+                    required:true
+                }]
+            })
+            return findboard;
+        }catch(e){
+            throw e;
+        }
+    }
+
 
 //게시글 단일 조회
     find = async (query) => {//외래키 = user_id
@@ -44,6 +61,23 @@ class board_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
             throw e;
         }
 
+    }
+    //게시글 수정
+    upload = async (info)=>{
+        try{
+            const {board_number, mainName,username,writing} = info
+        }catch(e){
+            throw e;
+        }
+    }
+    //게시글 삭제
+    delete = async(info)=>{
+        try{
+            const {board_number} = info
+            return await Board.destroy({where:{board_number}})
+        }catch(e){
+            throw e;
+        }
     }
 
     

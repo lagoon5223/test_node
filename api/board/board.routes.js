@@ -9,7 +9,7 @@ const Controller = require('./board.controller');
 const controller = new Controller();
 /**
  * @swagger
- * /api/board/create:
+ * /api/board/:
  *   post:
  *     tags: [게시글]
  *     summary: 게시글 생성
@@ -70,10 +70,60 @@ const controller = new Controller();
  *                   status: 400
  *                   message: "server error"
  */
-board_router.post('/create', controller.create);
+board_router.post('/', controller.create);
+
 /**
  * @swagger
- * /api/board/find/{board_number}:
+ * /api/board/:
+ *   get:
+ *     tags: [게시글]
+ *     summary: 게시글 전체 조회
+ *     parameters:
+ *       - name: user_id
+ *         in: query
+ *         required: false
+ *         description: user_id
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: 성공 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 200
+ *                   message: "success"
+ *       400:
+ *         description: 실패 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 400
+ *                   message: "server error"
+ */
+board_router.get('/',controller.find_all);
+
+/**
+ * @swagger
+ * /api/board/{board_number}:
  *   get:
  *     tags: [게시글]
  *     summary: 게시글 단일 조회
@@ -140,7 +190,127 @@ board_router.post('/create', controller.create);
  *                   status: 400
  *                   message: "server error"
  */
-board_router.get('/find/:board_number',controller.find);
+board_router.get('/:board_number',controller.find);
+
+/**
+ * @swagger
+ * /api/board/{board_number}:
+ *   put:
+ *     tags: [게시글]
+ *     summary: 게시글 수정
+ *     parameters:
+ *       - name: board_number
+ *         in: path
+ *         required: true
+ *         description: 게시글 번호
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               mainName:
+ *                 type: string
+ *               username:
+ *                 type: string
+ *               writing:
+ *                 type: string
+ *           examples:
+ *             example1:
+ *               summary: 예시 데이터
+ *               value:
+ *                 mainName: "boardname"
+ *                 username: "test1"
+ *                 writing : "게시글 내용"
+ *     responses:
+ *       200:
+ *         description: 성공 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 200
+ *                   message: "success"
+ *       400:
+ *         description: 실패 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 400
+ *                   message: "server error"
+ */
+board_router.put('/:board_number',controller.upload)
+
+/**
+ * @swagger
+ * /api/board/{board_number}:
+ *   delete:
+ *     tags: [게시글]
+ *     summary: 게시글 삭제
+ *     parameters:
+ *       - name: board_number
+ *         in: path
+ *         required: true
+ *         description: 게시글 번호
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: 성공 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 200
+ *                   message: "success"
+ *       400:
+ *         description: 실패 예시
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                 message:
+ *                   type: string
+ *             examples:
+ *               example1:
+ *                 value:
+ *                   status: 400
+ *                   message: "server error"
+ */
+board_router.delete('/:board_number',controller.delete)
+
+
 /**
  * @swagger
  * /api/board/admincreate:
@@ -205,6 +375,7 @@ board_router.get('/find/:board_number',controller.find);
  *                   message: "server error"
  */
 board_router.post('/admincreate', UserAuth, controller.admincreate);
+
 /**
  * @swagger
  * /api/board/pushAlarm:
