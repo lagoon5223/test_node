@@ -3,3 +3,4 @@ config.*
 /node_modules
 firebase*
 google*
+/mk_error

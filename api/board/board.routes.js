@@ -1,7 +1,7 @@
 const express = require('express');
 const board_router = express.Router();
-const {AdminAuth} = require('../../middleware/middleware1')
-const {UserAuth} = require('../../middleware/middleware1')
+const {AdminAuth} = require('../../middleware/Auth')
+const {UserAuth} = require('../../middleware/Auth')
 
 
 const Controller = require('./board.controller');

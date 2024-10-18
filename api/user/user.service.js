@@ -1,5 +1,7 @@
 const { User } = require('../../models/index');
 const { Board } = require('../../models/index');
+const { Sms } = require('../../models/index');
+const { Mail } = require('../../models/index')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); // jwt 모듈 불러오기
 const env = require('dotenv');
@@ -10,7 +12,7 @@ env.config();
 const secretKey = process.env.JWT_SECRET_KEY;
 
 class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작성
-    
+
 
     test = async (userInfo) => {
         try {
@@ -29,21 +31,44 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
     }
 
 
-    find = async (qurey) => {
+    find_all = async (query) => {
         try {
-            const { user_id } = qurey;
+            const { user_id } = query;
             console.log(user_id)
+            if(!user_id)return await User.findAll();
             const result = await User.findAll({
 
-                include: [{
-                    model: Board,
-                    where: { user_id },
-                }]
+                include: [
+                    {
+                        model: Board,
+                        where: { user_id },
+                        required: false,
+                    },
+                    {
+                        model: Sms,
+                        where: { user_id },
+                        required: false,
+                    },
+                    {
+                        model: Mail,
+                        where: { user_id },
+                        required: false,
+                    }
+                ]
 
             });
             console.log(result);
             return result;
         } catch (e) {
+            throw e;
+        }
+    }
+
+    find = async (params) =>{
+        try{
+            const {user_id} = params;
+            if(user_id)return await User.findOne({where:{user_id}})
+        }catch(e){
             throw e;
         }
     }
@@ -54,7 +79,7 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
             console.log('연결됨');
             const { user_account, password } = userInfo;
             const finduser = await User.findOne({ where: { user_account } });
-             console.log(finduser.user_account);
+            console.log(finduser.user_account);
             if (!finduser) {
                 throw new Error("존재하지 않는 아이디입니다.")
             }
@@ -70,13 +95,14 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
             // const payload = await user_account;
             delete finduser.dataValues.password;
             // console.log(finduser.dataValues)
-            const accessToken = jwt.sign(finduser.dataValues, secretKey,{expiresIn:"1h"});
-            console.log(accessToken);
-            const refreshToken = jwt.sign(finduser.dataValues, secretKey,{expiresIn:"24h"});
-            console.log('한글',refreshToken)
+            const accessToken = jwt.sign(finduser.dataValues, secretKey, { expiresIn: "1h" });
+            // console.log(accessToken);
+            const refreshTokenPayload = { accessToken }
+            const refreshToken = jwt.sign(refreshTokenPayload, secretKey, { expiresIn: "24h" });
+            // console.log('한글',refreshToken)
             // const verifyed = jwt.verify(token, secretKey);
             // console.log("verify : ", verifyed);
-            return accessToken;
+            return { accessToken, refreshToken };
         } catch (e) {
             throw e;
         }
@@ -144,8 +170,8 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
             throw e
         }
     }
-    
-    
+
+
     test_image = async (file) => {
         try {
             if (!file) {

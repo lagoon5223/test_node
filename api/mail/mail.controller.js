@@ -28,6 +28,22 @@ class mail_controller{
             res.status(200).json({ status: 200, message: 'sever error', data: e.message })
         }
     }
+    delete_mail = async(req,res)=>{
+        try{
+            const result = await this.service.delete_mail(req.params);
+            res.status(200).json({ status: 200, message: 'success', data: result })
+        }catch(e){
+            res.status(200).json({ status: 200, message: 'sever error', data: e.message })
+        }
+    }
+    upload_mail = async(req,res)=>{
+        try{
+            const result = await this.service.upload_mail({...req.params,...req.body});
+            res.status(200).json({ status: 200, message: 'success', data: result })
+        }catch(e){
+            res.status(200).json({ status: 200, message: 'sever error', data: e.message })
+        }
+    }
 }
 
 

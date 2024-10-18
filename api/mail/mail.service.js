@@ -36,7 +36,7 @@ class mail_service {
             const result = await transporter.sendMail(mailOption, (error, info) => {
                 
                 if (error) {
-                    throw error;
+                    throw new Error("server error");
                 } else {
                     console.log('발송되었음.')
                 }
@@ -81,6 +81,34 @@ class mail_service {
                 return result;
             }
         } catch (e) {
+            throw e;
+        }
+    }
+    upload_mail = async(info)=>{
+        try{
+            const {mail_number,subject,to_email,user_id}=info;
+            if(!subject)throw new Error("제목이 없습니다");
+            if(!to_email)throw new Error("수신 이메일이 없습니다.")
+            // console.log(info)
+            const update = await Mail.update({subject,to_email,user_id},{
+                where:{mail_number},
+            })
+            const result = await Mail.findOne({
+                where:{mail_number},
+            })
+            return result;
+        }catch(e){
+            throw e;
+        }
+    }
+    delete_mail = async(info)=>{
+        try{
+            const {mail_number} = info;
+            const result = await Mail.destroy({
+                where:{mail_number},
+            })
+            return result;
+        }catch(e){
             throw e;
         }
     }

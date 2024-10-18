@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
         },
 
-        username: {
+        nickname: {
             type: DataTypes.STRING(30),
             allowNull: false, //필수값
         },
@@ -33,6 +33,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false, //필수값
             unique: true //고유값
         },
+        user_phone: {
+            type: DataTypes.STRING(15),
+            allowNull: false,
+            unique: true
+        }
     }, {
         // 한글을 쓸수 있게 해준다.(한글 저장)
         tableName: 'user',
@@ -44,8 +49,8 @@ module.exports = (sequelize, DataTypes) => {
     User.associate = (db) => { // 유저를 1로 정의
         User.hasMany(db.Board, { foreignKey: "user_id" });
         User.hasMany(db.Image, { foreignKey: "user_id" });
-        User.hasMany(db.Mail, { foreignKey: "user_id" })
-
+        User.hasMany(db.Mail, { foreignKey: "user_id" });
+        User.hasMany(db.Sms, { foreignKey: "user_id" });
     };
     return User;
 }

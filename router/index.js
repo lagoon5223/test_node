@@ -5,6 +5,7 @@ const adminroutes = require('../api/admin/admin.routes')
 const boardroutes = require('../api/board/board.routes')
 const imageroutes = require('../api/image/image.routes')
 const mailroutes = require('../api/mail/mail.routes')
+const smsroutes = require('../api/sms/sms.routes')
 
 
 
@@ -42,5 +43,11 @@ index.use('/image',imageroutes);
  *   name: 메일
  */
 index.use('/mail',mailroutes);
+/**
+ * @swagger
+ * tags:
+ *   name: SMS
+ */
+index.use('/sms',smsroutes)
 
 module.exports = index;
