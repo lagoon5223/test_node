@@ -33,6 +33,8 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
             // console.log(token);
             const verifyed = jwt.verify(token, secretKey);
             // console.log("verify : ", verifyed);
+
+            console.log("어드민 로그인 서비스 도착")
             return token;
         } catch (e) {
             throw e;
