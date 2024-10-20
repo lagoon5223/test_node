@@ -374,7 +374,7 @@ board_router.delete('/:board_number',controller.delete)
  *                   status: 400
  *                   message: "server error"
  */
-board_router.post('/admincreate', UserAuth, controller.admincreate);
+board_router.post('/admincreate', AdminAuth, controller.admincreate);
 
 /**
  * @swagger
