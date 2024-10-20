@@ -135,17 +135,10 @@ user_router.post('/',controller.post_signup);
 user_router.post('/login',controller.login);
 /**
  * @swagger
- * /api/user:
+ * /api/user/:
  *   get:
  *     tags: [유저]
  *     summary: 유저 전체 조회
- *     parameters:
- *       - name: user_id
- *         in: query
- *         required: false
- *         description: user_id
- *         schema:
- *           type: integer
  *     responses:
  *       200:
  *         description: 성공 예시

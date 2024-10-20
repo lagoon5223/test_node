@@ -70,6 +70,51 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
         }
     }
 
+    find_all = async (Info) =>{
+        try{
+            const result = await Admin.findAll();
+            return result;
+        }catch(e){
+            throw e;
+        }
+    }
+
+    find = async (Info)=>{
+        try{
+            const {admin_id} = Info;
+            const findadmin = await Admin.findOne({where:admin_id})
+            return findadmin;
+        }catch(e){
+            throw e;
+        }
+    }
+    update = async (admin_id, Info)=>{
+        try{
+            const {username,password,email}=Info;
+            const updateAdmin = await Admin.update({
+                username: username,
+                password: password,
+                eamil: email,
+
+            },
+        {
+            where: admin_id
+        })
+        return await Admin.findOne({where:admin_id})
+        }catch(e){
+            throw e;
+        }
+    }
+
+    delete = async (Info) =>{
+        try{
+            const {admin_id} = Info;
+            return await Admin.destroy({ where : admin_id })
+        }catch(e){
+            throw e;
+        }
+    }
+
 }
 
 module.exports = admin_service;

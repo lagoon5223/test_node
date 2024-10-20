@@ -126,17 +126,22 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
 
     }
 
-    update = async (id, userInfo) => {
+    update = async (user_id, userInfo) => {
         try {
-            const { password } = userInfo;
-            console.log(password);
-            const newpassword = password;
-            // console.log(newpassword);
-            return await User.update({
-                password: newpassword,
+            const { nickname,password,email,user_phone } = userInfo;
+            
+            const updateuser = await User.update({
+                nickname: nickname,
+                password: password,
+                email:email,
+                user_phone:user_phone,
             }, {
-                where: id
+                where: user_id
             });
+
+            
+
+            return await User.findOne({where:user_id});
         } catch (e) {
             throw e;
         }
