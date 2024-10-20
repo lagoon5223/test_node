@@ -22,8 +22,6 @@ const controller = new Controller();
  *               image:
  *                 type: string
  *                 format: binary
- *               filename:
- *                 type: string
  *             required:
  *               - image
  *     responses:
@@ -38,28 +36,12 @@ const controller = new Controller();
  *                   type: integer
  *                 message:
  *                   type: string
- *                 data:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: integer
- *                     filename:
- *                       type: string
- *                     path:
- *                       type: string
- *                     title:
- *                       type: string
  *             examples:
  *               example1:
  *                 summary: 성공적인 응답 예시
  *                 value:
  *                   status: 200
  *                   message: "success"
- *                   data:
- *                     id: 1
- *                     filename: "test_img1728529333389.png"
- *                     path: "uploads/test_img1728529333389.png"
- *                     title: "Sample Title"
  *       400:
  *         description: 이미지 업로드 실패
  *         content:
