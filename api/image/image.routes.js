@@ -64,7 +64,7 @@ image_router.post('/upload',upload.single('image'),controller.test_image);
 /**
  * @swagger
  * /api/image/find:
- *   post:
+ *   get:
  *     tags: [이미지]
  *     summary: 이미지 찾기
  *     requestBody:
@@ -76,11 +76,7 @@ image_router.post('/upload',upload.single('image'),controller.test_image);
  *             properties:
  *               image:
  *                 type: string
- *                 format: binary
- *               filename:
- *                 type: string
- *             required:
- *               - image
+
  *     responses:
  *       200:
  *         description: 이미지 업로드 성공
@@ -110,11 +106,6 @@ image_router.post('/upload',upload.single('image'),controller.test_image);
  *                 value:
  *                   status: 200
  *                   message: "success"
- *                   data:
- *                     id: 1
- *                     filename: "test_img1728529333389.png"
- *                     path: "uploads/test_img1728529333389.png"
- *                     title: "Sample Title"
  *       400:
  *         description: 이미지 업로드 실패
  *         content:

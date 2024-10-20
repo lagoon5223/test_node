@@ -17,7 +17,7 @@ class image_controller {
     get_image = async(req,res)=>{
         try {
             
-            const result = await this.imageservice.get_image(req.query);
+            const result = await this.imageservice.get_image(req.params);
             console.log("결과값 : ",result)
             res.sendFile(result, (err) => {
                 if (err) {

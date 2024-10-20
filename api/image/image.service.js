@@ -42,11 +42,11 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
         try {
             const { image_id } = Info;
             
-            const fineimage = await Image.findOne({
+            const findimage = await Image.findOne({
                 where: { image_id }
             })
-            const imageUrl = `http://43.203.211.103/api/upload/${fineimage.filename}`;
-            return imageUrl; // URL 반환
+            const imageUrl = `http://43.203.211.103/api/upload/${findimage.filename}`;
+            return findimage; // URL 반환
         } catch (e) {
             throw e;
         }

@@ -79,7 +79,7 @@ admin_router.post('/', controller.admin_signup);
 
 /**
  * @swagger
- * /api/admin/login:
+ * /api/admin/admin_login:
  *   post:
  *     tags: [관리자]
  *     summary: 관리자 로그인
