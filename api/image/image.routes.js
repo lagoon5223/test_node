@@ -63,20 +63,17 @@ const controller = new Controller();
 image_router.post('/upload',upload.single('image'),controller.test_image);
 /**
  * @swagger
- * /api/image/find:
+ * /api/image/{image_id}:
  *   get:
  *     tags: [이미지]
  *     summary: 이미지 찾기
- *     requestBody:
- *       required: true
- *       content:
- *         multipart/form-data:
- *           schema:
- *             type: object
- *             properties:
- *               image:
- *                 type: string
-
+ *     parameters:
+ *       - name: image_id
+ *         in: path
+ *         required: false
+ *         description: image_id
+ *         schema:
+ *           type: integer
  *     responses:
  *       200:
  *         description: 이미지 업로드 성공
@@ -124,6 +121,6 @@ image_router.post('/upload',upload.single('image'),controller.test_image);
  *                   status: 400
  *                   message: "server error"
  */
-image_router.get('/find',controller.get_image)
+image_router.get('/:image_id', controller.get_image);
 
 module.exports = image_router;
