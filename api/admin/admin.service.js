@@ -93,7 +93,6 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
     }
     update = async (Info) => {
         try {
-            console.log('서비스 도착')
             const { admin_id, username, password, email } = Info;
             let {newpassword}=Info
             const findAdmin = await Admin.findOne({ where: { admin_id } });
@@ -101,7 +100,7 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
             if (!checkpassword) {
                 throw new Error("비밀번호가 일치하지 않습니다.")
             }
-            console.log('여긴도착')
+            
             newpassword = bcrypt.hashSync(newpassword,10)
             const updateAdmin = await Admin.update({username, password:newpassword,email},
                 {

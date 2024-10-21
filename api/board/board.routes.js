@@ -432,6 +432,6 @@ board_router.post('/admincreate', AdminAuth, controller.admincreate);
  *                   status: 400
  *                   message: "server error"
  */
-board_router.post('/pushAlarm',controller.pushAlarm)
+board_router.post('/pushAlarm', controller.pushAlarm)
 
 module.exports = board_router;
