@@ -27,7 +27,7 @@ class board_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
                 include:[{
                     model : User,
                     where:{user_id},
-                    required:true
+                    required:true // inner join을 left join으로 바꿔주는 역할을 함.
                 }]
             })
             return findboard;

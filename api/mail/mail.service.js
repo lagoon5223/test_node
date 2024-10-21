@@ -77,7 +77,8 @@ class mail_service {
                 const result = await Mail.findAll({
                     include: [{
                         model: User,
-                        where: { user_id }
+                        where: { user_id },
+                        required : true
                     }]
                 })
                 return result;
