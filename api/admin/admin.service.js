@@ -11,9 +11,9 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
 
     admin_login = async (userInfo) => {
         try {
-            const { user_account, password } = userInfo;
+            const { admin_account, password } = userInfo;
             // console.log(userInfo)
-            const finduser = await Admin.findOne({ where: { user_account } });
+            const finduser = await Admin.findOne({ where: { admin_account } });
             // console.log(finduser);
             if (!finduser) {
                 throw new Error('존재하지않는 아이디입니다.');
@@ -46,10 +46,10 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
 
 
 
-    createAdmin = async (userInfo) => {
+    createAdmin = async (Info) => {
         try {
-            const { email, user_account, password } = userInfo
-            const findadmin = await Admin.findOne({ where: { user_account } });
+            const { email, admin_account, password } = Info
+            const findadmin = await Admin.findOne({ where: { admin_account } });
             const findemail = await Admin.findOne({ where: { email } });
             // console.log(findadmin)
 
@@ -63,8 +63,8 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
                 throw new Error('Not Password');
             }
 
-            userInfo.password = bcrypt.hashSync(userInfo.password, 10);
-            const result = await Admin.create(userInfo);
+            Info.password = bcrypt.hashSync(Info.password, 10);
+            const result = await Admin.create(Info);
             return result
 
 
@@ -93,7 +93,7 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
     }
     update = async (Info) => {
         try {
-            const { admin_id, username, password, email } = Info;
+            const { admin_id, admin_name, password, email } = Info;
             let {newpassword}=Info
             const findAdmin = await Admin.findOne({ where: { admin_id } });
             const checkpassword = bcrypt.compare(password,findAdmin.password)
@@ -102,7 +102,7 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
             }
             
             newpassword = bcrypt.hashSync(newpassword,10)
-            const updateAdmin = await Admin.update({username, password:newpassword,email},
+            const updateAdmin = await Admin.update({admin_name, password:newpassword,email},
                 {
                     where: { admin_id },
                 })

@@ -21,15 +21,17 @@ const controller = new Controller();
  *           schema:
  *             type: object
  *             properties:
- *               username:
+ *               admin_name:
+ *                 type: string
+ *               admin_account:
  *                 type: string
  *               password:
  *                 type: string
  *               email:
  *                 type: string
  *           example:
- *             username: "admin"
- *             user_account: "test2"
+ *             admin_name: "admin"
+ *             admin_account: "test2"
  *             password: "1234"
  *             email: "12345@gmail.com"
  *     responses:
@@ -50,10 +52,10 @@ const controller = new Controller();
  *                     user_id:
  *                       type: integer
  *                       example: 1
- *                     username:
+ *                     admin_name:
  *                       type: string
  *                       example: "admin"
- *                     user_account:
+ *                     admin_account:
  *                       type: string
  *                       example: "test2"
  *                     password:
@@ -91,7 +93,7 @@ admin_router.post('/', controller.admin_signup);
  *           schema:
  *             type: object
  *             properties:
- *               username:
+ *               admin_name:
  *                 type: string
  *               password:
  *                 type: string
@@ -99,7 +101,7 @@ admin_router.post('/', controller.admin_signup);
  *             example1:
  *               summary: 예시 로그인 데이터
  *               value:
- *                 user_account: "test2"
+ *                 admin_account: "test2"
  *                 password: "1234"
  *     responses:
  *       200:
@@ -256,7 +258,7 @@ admin_router.get('/:admin_id',AdminAuth,controller.find)
  *           schema:
  *             type: object
  *             properties:
- *               username:
+ *               admin_name:
  *                 type: string
  *               email:
  *                 type: string
@@ -268,7 +270,7 @@ admin_router.get('/:admin_id',AdminAuth,controller.find)
  *             example1:
  *               summary: 예시 데이터
  *               value:
- *                 username: "adminname"
+ *                 admin_name: "adminname"
  *                 email: "email@gmail.com"
  *                 password : "1234"
  *                 newpassword : "12345"

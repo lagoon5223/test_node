@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes)=>{
             autoIncrement : true
         },
         
-        username: {
+        admin_name: {
           type:DataTypes.STRING(30),
           allowNull: false, //필수값
       },
-         user_account: { 
+         admin_account: { 
             type:DataTypes.STRING(20),
             allowNull: false,
             unique : true
