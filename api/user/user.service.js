@@ -126,9 +126,9 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
 
     }
 
-    update = async (user_id, userInfo) => {
+    update = async (userInfo) => {
         try {
-            const { nickname,password,email,user_phone } = userInfo;
+            const { user_id, nickname,password,email,user_phone } = userInfo;
             
             const updateuser = await User.update({
                 nickname: nickname,

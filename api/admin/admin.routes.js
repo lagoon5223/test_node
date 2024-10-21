@@ -1,6 +1,7 @@
 const express = require('express');
 const admin_router = express.Router();
 const Controller = require('./admin.controller');
+const {AdminAuth} = require('../../middleware/Auth')
 
 const controller = new Controller();
 
@@ -182,7 +183,7 @@ admin_router.post('/admin_login', controller.admin_login);
  *                   status: 400
  *                   message: "server error"
  */
-admin_router.get('/',controller.find_all)
+admin_router.get('/',AdminAuth,controller.find_all)
 /**
  * @swagger
  * /api/admin/{admin_id}:
@@ -232,7 +233,7 @@ admin_router.get('/',controller.find_all)
  *                   status: 400
  *                   message: "server error"
  */
-admin_router.get('/:admin_id',controller.find)
+admin_router.get('/:admin_id',AdminAuth,controller.find)
 
 
 /**
@@ -261,6 +262,8 @@ admin_router.get('/:admin_id',controller.find)
  *                 type: string
  *               password:
  *                 type: string
+ *               newpassword:
+ *                 type: string
  *           examples:
  *             example1:
  *               summary: 예시 데이터
@@ -268,6 +271,7 @@ admin_router.get('/:admin_id',controller.find)
  *                 username: "adminname"
  *                 email: "email@gmail.com"
  *                 password : "1234"
+ *                 newpassword : "12345"
  *     responses:
  *       200:
  *         description: 성공 예시

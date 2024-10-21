@@ -62,7 +62,7 @@ class user_controller {//클라이언트의 요청을 가공해 서비스에 전
 
     update = async (req, res) => {
         try {
-            const result = await this.userservice.update(...req.params,...req.body);
+            const result = await this.userservice.update({...req.params,...req.body});
             // const password = await this.service.password;
             res.status(200).json({ status: 200, message: 'success', data: result })
         }

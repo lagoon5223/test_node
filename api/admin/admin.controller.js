@@ -37,6 +37,7 @@ class admin_controller {
 
     find =async (req, res) => {
         try {
+            console.log('컨트롤러 도착')
             const result = await this.adminservice.find(req.params);
             res.status(200).json({ status: 200, message: 'success', data: result })
         } catch (e) {
@@ -46,7 +47,8 @@ class admin_controller {
 
     update =async (req, res) => {
         try {
-            const result = await this.adminservice.update(...req.params,...req.body);
+            console.log('컨트롤러 도착')
+            const result = await this.adminservice.update({...req.params,...req.body});
             res.status(200).json({ status: 200, message: 'success', data: result })
         } catch (e) {
             res.status(200).json({ status: 200, message: 'sever error', data: e.message })
