@@ -6,8 +6,7 @@ class image_controller {
 
     test_image = async (req, res) => {
         try {
-
-            const result = await this.imageservice.test_image(req.file);
+            const result = await this.imageservice.test_image({...req.file,...req.body});
 
             res.status(200).json({ status: 200, message: 'success', data: result })
         } catch (e) {
@@ -15,14 +14,24 @@ class image_controller {
         }
     }
 
+    find_all = async (req, res) => {
+        try {
+            const result = await this.imageservice.find_all(req.query);
+            res.status(200).json({ status: 200, message: 'success', data: result })
+        } catch (e) {
+            res.status(200).json({ status: 404, message: 'server error', data: e.message })
+
+        }
+    }
+
     get_image = async (req, res) => {
         try {
             // 이미지 파일 정보 가져오기
-            console.log('컨트롤러 도착')
+
             const imageData = await this.imageservice.get_image(req.params);
 
             // 이미지 파일의 절대 경로 생성
-            const filePath = path.join(__dirname, '..','..', 'uploads', imageData); // uploads 폴더에 파일이 있다고 가정
+            const filePath = path.join(__dirname, '..', '..', 'uploads', imageData); // uploads 폴더에 파일이 있다고 가정
             console.log(filePath)
             // 파일 전송
             res.sendFile(filePath, (err) => {
@@ -37,6 +46,24 @@ class image_controller {
             res.status(404).json({ status: 404, message: 'server error', data: e.message });
         }
     };
+
+    update = async (req,res)=>{
+        try{
+            const result = await this.imageservice.update({...req.params,...req.body});
+            res.status(200).json({ status : 200, massage: 'success', data : result })
+        }catch(e){
+            res.status(200).json({ status: 404, message: 'server error', data: e.message })
+        }
+    }
+
+    delete = async (req,res)=>{
+        try{
+            const result = await this.imageservice.delete(req.params);
+            res.status(200).json({ status : 200, massage: 'success', data : result })
+        }catch(e){
+            res.status(200).json({ status: 404, message: 'server error', data: e.message })
+        }
+    }
 
 }
 
