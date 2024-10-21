@@ -15,7 +15,7 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
 
     test_image = async (file) => {
         try {
-            
+            console.log('서비스 도착')
             // 파일 이름과 확장자 분리
             //console.log(file)
             const ext = path.extname(file.originalname); // 확장자 추출

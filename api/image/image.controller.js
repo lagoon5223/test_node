@@ -18,6 +18,7 @@ class image_controller {
     get_image = async (req, res) => {
         try {
             // 이미지 파일 정보 가져오기
+            console.log('컨트롤러 도착')
             const imageData = await this.imageservice.get_image(req.params);
 
             // 이미지 파일의 절대 경로 생성
