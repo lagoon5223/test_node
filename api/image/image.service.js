@@ -23,13 +23,12 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
             const timeset = Math.floor(Date.now()/10000);
             // 새로운 파일 이름 생성
             const newFileName = `${baseName}${timeset}${ext}`; // 예: test_img_1634748000000.png
-            console.log(newFileName)
+            // console.log(newFileName)
 
             // DB에 저장할 데이터
             const imageData = {
                 filename: newFileName, // 확장자가 포함된 새로운 파일 이름
             };
-            console.log(imageData)
 
             const result = await Image.create(imageData)
             return result; // 데이터베이스에 저장;
@@ -45,7 +44,8 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
             const findimage = await Image.findOne({
                 where: { image_id }
             })
-            const imageUrl = `http://43.203.211.103/api/upload/${findimage.filename}`;
+            console.log(findimage.filename)
+            const imageUrl = `${findimage.filename}`;
             return imageUrl; // URL 반환
         } catch (e) {
             throw e;

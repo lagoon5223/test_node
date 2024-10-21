@@ -5,9 +5,9 @@ require('dotenv').config();
 
 
 
-const uploadDir = path.join(__dirname,'..', process.env.UPLOAD_DIR || 'uploads');
+const uploadDir = path.join(__dirname, '..', process.env.UPLOAD_DIR || 'uploads');
 // 업로드 디렉토리 확인 및 생성
-
+console.log(uploadDir)
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
 }
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({ //하드디스크에 업로드 파일을 �
     },
     filename(req, file, done) { //저장할 파일명
         const ext = path.extname(file.originalname);
-        const timeset = Math.floor(Date.now()/10000);
+        const timeset = Math.floor(Date.now() / 10000);
         done(null, path.basename(file.originalname, ext) + timeset + ext);
     }
 });
