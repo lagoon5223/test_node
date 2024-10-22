@@ -41,8 +41,13 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
     find_all = async (query) => {
         try {
             const { user_id } = query;
-            if(!user_id)return await Image.findAll();
-            const result = Image.findAll({
+            if(!user_id){
+                const result = await Image.findAll();
+                console.log(result)
+                if(result.length === 0)throw new Error("파일이 없음.")
+                return result;
+            }
+            const result = await Image.findAll({
                 include: [
                     {
                         model: User,
@@ -50,7 +55,10 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
                         required:true
                     }]
             })
-            return result;
+            const filenames = result.map(image => image.dataValues.filename);
+            const imageId =await result;
+            console.log(imageId.filename)
+            return `${filenames}`;
         } catch (e) {
             throw e;
         }
@@ -63,6 +71,7 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
             const findimage = await Image.findOne({
                 where: { image_id }
             })
+            if(!findimage)throw new Error("파일을 찾을 수 없음")
             console.log(findimage.filename)
             const imageUrl = `${findimage.filename}`;
             return imageUrl; // URL 반환
@@ -80,6 +89,7 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
                     where:{image_id},
                 }
             )
+            if(!updateImage)throw new Error("파일을 찾을 수 없음")
             return await Image.findOne({where:{image_id}})
         }catch(e){
             throw e;
