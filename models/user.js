@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
         },
 
         nickname: {
-            type: DataTypes.STRING(30),
+            type: DataTypes.STRING(10),
             allowNull: false, //필수값
         },
 
         user_account: {
-            type: DataTypes.STRING(20),
+            type: DataTypes.STRING(16),
             allowNull: false,
             unique: true
         },
@@ -37,6 +37,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(15),
             allowNull: false,
             unique: true
+        },
+        refreshToken:{
+            type: DataTypes.TEXT,
+            allowNull : true,
+
         }
     }, {
         // 한글을 쓸수 있게 해준다.(한글 저장)

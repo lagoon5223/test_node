@@ -10,7 +10,7 @@ class announcement_controller{
             const result = await this.announcement_service.create(req.body);
             res.status(200).json({ status: 200, message: 'success', data: result })
         } catch (e) {
-            res.status(200).json({ status: 200, message: 'sever error', data: e.message })
+            res.status(400).json({ status: 400, message: 'sever error', data: e.message })
         }
     }
     /**
@@ -21,7 +21,7 @@ class announcement_controller{
             const result = await this.announcement_service.findAll(req.query);
             res.status(200).json({ status : 200, message: 'success', data : result})
         }catch(e){
-            res.status(200).json({ status: 200, message: 'sever error', data: e.message })
+            res.status(400).json({ status: 400, message: 'sever error', data: e.message })
         }
     }
     /**
@@ -32,7 +32,7 @@ class announcement_controller{
             const result = await this.announcement_service.find(req.params);
             res.status(200).json({ status : 200, message: 'success', data : result})
         }catch(e){
-            res.status(200).json({ status: 200, message: 'sever error', data: e.message })
+            res.status(400).json({ status: 400, message: 'sever error', data: e.message })
         }
     }
     /**
@@ -43,7 +43,7 @@ class announcement_controller{
             const result = await this.announcement_service.update({...req.params,...req.body});
             res.status(200).json({ status : 200, message: 'success', data : result})
         }catch(e){
-            res.status(200).json({ status: 200, message: 'sever error', data: e.message })
+            res.status(400).json({ status: 400, message: 'sever error', data: e.message })
         }
     }
     /**
@@ -54,7 +54,7 @@ class announcement_controller{
             const result = await this.announcement_service.delete(req.params);
             res.status(200).json({ status : 200, message: 'success', data : result})
         }catch(e){
-            res.status(200).json({ status: 200, message: 'sever error', data: e.message })
+            res.status(400).json({ status: 400, message: 'sever error', data: e.message })
         }
     }
 }

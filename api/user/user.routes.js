@@ -1,6 +1,6 @@
 const express = require('express');
 const user_router = express.Router();
-const {UserAuth} = require('../../middleware/Auth');
+const {UserAuth, AdminAuth} = require('../../middleware/Auth');
 const upload = require('../../middleware/multer')
 const Controller = require('./user.controller');
 
@@ -340,9 +340,9 @@ user_router.put('/:user_id',controller.update);
  *                   status: 400
  *                   message: "server error"
  */
-user_router.delete('/delete',controller.delete);
+user_router.delete('/:user_id',controller.delete);
 
-user_router.get('/tokentest',UserAuth,controller.tokentest);
+user_router.get('/tokentest',AdminAuth,controller.tokentest);
 
 user_router.post('/test',controller.test);
 

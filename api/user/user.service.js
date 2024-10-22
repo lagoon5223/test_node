@@ -95,13 +95,19 @@ class user_service {//컨트롤러가 전해준 요청을 응답해줄 함수작
             // const payload = await user_account;
             delete finduser.dataValues.password;
             // console.log(finduser.dataValues)
-            const accessToken = jwt.sign(finduser.dataValues, secretKey, { expiresIn: "1h" });
+            const accessToken = jwt.sign(finduser.dataValues, secretKey, { expiresIn: "1s" });
             // console.log(accessToken);
-            const refreshTokenPayload = { accessToken }
-            const refreshToken = jwt.sign(refreshTokenPayload, secretKey, { expiresIn: "24h" });
+            
+            const refreshToken = jwt.sign(finduser.dataValues, secretKey, { expiresIn: "24h" });
             // console.log('한글',refreshToken)
             // const verifyed = jwt.verify(token, secretKey);
             // console.log("verify : ", verifyed);
+            await User.update({
+                refreshToken: refreshToken,
+            },
+        {
+            where:{user_account},
+        })
             return { accessToken, refreshToken };
         } catch (e) {
             throw e;
