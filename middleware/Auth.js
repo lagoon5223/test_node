@@ -37,7 +37,7 @@ const verifyToken = (req, res, next, type) => {
     // const authorization = req.headers.authorization.slice(7,req.headers.authorization.length)//토큰 검사하기 위해 bearer를 없앰
     // console.log(authorization)
     
-    // const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);//verify를 쓰면 토큰을 해석해서 decoded에 해석한 값을 넣어준다.
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);//verify를 쓰면 토큰을 해석해서 decoded에 해석한 값을 넣어준다.
     
     //verify (토큰,시크릿키) <- 토큰이랑 시크릿키로 토큰이 유효한지 확인하는 것.
     // console.log("decoded", decoded)
