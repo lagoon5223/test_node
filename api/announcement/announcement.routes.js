@@ -1,18 +1,19 @@
-const express = require('express');
-const board_router = express.Router();
-const {AdminAuth} = require('../../middleware/Auth')
-const {UserAuth} = require('../../middleware/Auth')
-
-
-const Controller = require('./board.controller');
+const express = require("express")
+const {AdminAuth,UserAuth} = require('../../middleware/Auth')
+const Controller = require('./announcement.controller');
+const { Admin } = require("../../models");
 
 const controller = new Controller();
+
+const announcement_router = express.Router();
 /**
  * @swagger
- * /api/board/:
+ * /api/announcement/:
  *   post:
- *     tags: [게시글]
- *     summary: 게시글 생성
+ *     tags: [공지사항]
+ *     summary: 공지사항 생성
+ *     security:
+ *       - api_key: []
  *     requestBody:
  *       required: true
  *       content:
@@ -20,21 +21,18 @@ const controller = new Controller();
  *           schema:
  *             type: object
  *             properties:
- *               mainName:
+ *               subject:
  *                 type: string
- *               user_id:
+ *               admin_id:
  *                 type: integer
- *               username:
- *                 type: string
  *               writing:
  *                 type: string
  *           examples:
  *             example1:
  *               summary: 예시 데이터
  *               value:
- *                 mainName: "게시글 제목"
- *                 user_id: 1
- *                 username: "test1234"
+ *                 subject: "게시글 제목"
+ *                 admin_id: 1
  *                 writing: "게시글 내용"
  *     responses:
  *       200:
@@ -70,19 +68,20 @@ const controller = new Controller();
  *                   status: 400
  *                   message: "server error"
  */
-board_router.post('/', controller.create);
-
+announcement_router.post('/',AdminAuth,controller.create);
 /**
  * @swagger
- * /api/board/:
+ * /api/announcement/:
  *   get:
- *     tags: [게시글]
- *     summary: 게시글 전체 조회
+ *     tags: [공지사항]
+ *     summary: 공지사항 전체 조회
+ *     security:
+ *       - api_key: []
  *     parameters:
- *       - name: user_id
+ *       - name: admin_id
  *         in: query
  *         required: false
- *         description: user_id
+ *         description: admin_id
  *         schema:
  *           type: integer
  *     responses:
@@ -119,19 +118,20 @@ board_router.post('/', controller.create);
  *                   status: 400
  *                   message: "server error"
  */
-board_router.get('/',controller.find_all);
-
+announcement_router.get('/',AdminAuth,controller.findAll);
 /**
  * @swagger
- * /api/board/{board_number}:
+ * /api/announcement/{announcement_id}:
  *   get:
- *     tags: [게시글]
- *     summary: 게시글 단일 조회
+ *     tags: [공지사항]
+ *     summary: 공지사항 단일 조회
+ *     security:
+ *       - api_key: []
  *     parameters:
- *       - name: board_number
+ *       - name: announcement_id
  *         in: path
  *         required: true
- *         description: 게시글 번호
+ *         description: 공지사항 번호
  *         schema:
  *           type: integer
  *     responses:
@@ -153,26 +153,6 @@ board_router.get('/',controller.find_all);
  *                 value:
  *                   status: 200
  *                   message: "success"
- *                   data: [
- *                     {
- *                       "board_number": 2,
- *                       "mainName": "Test Table",
- *                       "username": "test1234",
- *                       "writing": "Test Post",
- *                       "createdAt": "2024-10-15T08:39:58.000Z",
- *                       "updatedAt": "2024-10-15T08:39:58.000Z",
- *                       "user_id": 1,
- *                       "User": {
- *                         "user_id": 1,
- *                         "username": "DD",
- *                         "user_account": "test1234",
- *                         "password": "$2b$10$GkD043nnKUaGeGuVzSE7wuiSqA6fL5VIxQzvXB/ylKzLtnlOetxda",
- *                         "email": "test123@gmail.com",
- *                         "createdAt": "2024-10-15T08:39:14.000Z",
- *                         "updatedAt": "2024-10-15T08:39:14.000Z"
- *                       }
- *                     }
- *                   ]
  *       400:
  *         description: 실패 예시
  *         content:
@@ -190,19 +170,20 @@ board_router.get('/',controller.find_all);
  *                   status: 400
  *                   message: "server error"
  */
-board_router.get('/:board_number',controller.find);
-
+announcement_router.get('/:announcement_id',AdminAuth, controller.find)
 /**
  * @swagger
- * /api/board/{board_number}:
+ * /api/announcement/{announcement_id}:
  *   put:
- *     tags: [게시글]
- *     summary: 게시글 수정
+ *     tags: [공지사항]
+ *     summary: 공지사항 수정
+ *     security:
+ *       - api_key: []
  *     parameters:
- *       - name: board_number
+ *       - name: announcement_id
  *         in: path
  *         required: true
- *         description: 게시글 번호
+ *         description: announcement_id
  *         schema:
  *           type: integer
  *     requestBody:
@@ -212,19 +193,22 @@ board_router.get('/:board_number',controller.find);
  *           schema:
  *             type: object
  *             properties:
- *               mainName:
+ *               admin_name:
  *                 type: string
- *               username:
+ *               email:
  *                 type: string
- *               writing:
+ *               password:
+ *                 type: string
+ *               newpassword:
  *                 type: string
  *           examples:
  *             example1:
  *               summary: 예시 데이터
  *               value:
- *                 mainName: "boardname"
- *                 username: "test1"
- *                 writing : "게시글 내용"
+ *                 admin_name: "adminname"
+ *                 email: "email@gmail.com"
+ *                 password : "1234"
+ *                 newpassword : "12345"
  *     responses:
  *       200:
  *         description: 성공 예시
@@ -259,19 +243,21 @@ board_router.get('/:board_number',controller.find);
  *                   status: 400
  *                   message: "server error"
  */
-board_router.put('/:board_number',controller.upload)
+announcement_router.put('/:announcement_id',AdminAuth,controller.update)
 
 /**
  * @swagger
- * /api/board/{board_number}:
+ * /api/announcement/{announcement_id}:
  *   delete:
- *     tags: [게시글]
- *     summary: 게시글 삭제
+ *     tags: [공지사항]
+ *     summary: 공지사항 삭제
+ *     security:
+ *       - api_key: []
  *     parameters:
- *       - name: board_number
+ *       - name: announcement_id
  *         in: path
  *         required: true
- *         description: 게시글 번호
+ *         description: announcement_id
  *         schema:
  *           type: integer
  *     responses:
@@ -308,68 +294,7 @@ board_router.put('/:board_number',controller.upload)
  *                   status: 400
  *                   message: "server error"
  */
-board_router.delete('/:board_number',controller.delete)
+announcement_router.delete('/:announcement_id',AdminAuth,controller.delete)
 
 
-
-board_router.post('/admincreate', AdminAuth, controller.admincreate);
-
-/**
- * @swagger
- * /api/board/pushAlarm:
- *   post:
- *     tags: [게시글]
- *     summary: 게시글 알림 푸쉬
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               token:
- *                 type: string
- *           examples:
- *             example1:
- *               summary: 예시 알람 푸쉬 데이터
- *               value:
- *                 token: "firebase 토큰 값"
- *     responses:
- *       200:
- *         description: 알람 푸쉬 성공
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: integer
- *                 message:
- *                   type: string
- *             examples:
- *               example1:
- *                 summary: 성공적인 응답 예시
- *                 value:
- *                   status: 200
- *                   message: "success"
- *       400:
- *         description: 알람 푸쉬 실패
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: integer
- *                 message:
- *                   type: string
- *             examples:
- *               example1:
- *                 summary: 실패 응답 예시
- *                 value:
- *                   status: 400
- *                   message: "server error"
- */
-board_router.post('/pushAlarm', controller.pushAlarm)
-
-module.exports = board_router;
+module.exports = announcement_router;

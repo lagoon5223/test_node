@@ -115,7 +115,7 @@ class admin_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
     delete = async (Info) => {
         try {
             const { admin_id } = Info;
-            return await Admin.destroy({ where: admin_id })
+            return await Admin.destroy({ where: {admin_id} })
         } catch (e) {
             throw e;
         }

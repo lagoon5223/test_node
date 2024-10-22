@@ -5,7 +5,8 @@ const adminroutes = require('../api/admin/admin.routes')
 const boardroutes = require('../api/board/board.routes')
 const imageroutes = require('../api/image/image.routes')
 const mailroutes = require('../api/mail/mail.routes')
-const smsroutes = require('../api/sms/sms.routes')
+const smsroutes = require('../api/sms/sms.routes');
+const announcementroutes = require('../api/announcement/announcement.routes');
 
 
 
@@ -43,6 +44,12 @@ index.use('/image',imageroutes);
  *   name: 메일
  */
 index.use('/mail',mailroutes);
+/**
+ * @swagger
+ * tags:
+ *   name: 공지사항
+ */
+index.use('/announcement',announcementroutes);
 /**
  * @swagger
  * tags:

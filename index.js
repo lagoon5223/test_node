@@ -6,6 +6,7 @@ const index = require('./router/index.js');
 const http = require('http');
 const api = require("./router");
 const cors = require('cors');
+
 //cors 설정
 // const all_cors = ['http://3.39.253.53/*']
 process.env.firebase = './';
@@ -23,10 +24,10 @@ admin.initializeApp({
 // const board_router = require('./router/board.routes');
 
 const app = express();
-const { swaggerUi, specs } = require("./swagger/swagger");
+const { swaggerUi, specs, swaggerOptions } = require("./swagger/swagger");
 
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs,swaggerOptions));
 
 app.set('port', process.env.PORT || 9999);
 app.set('view engine', 'ejs');

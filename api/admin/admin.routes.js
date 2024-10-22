@@ -93,7 +93,7 @@ admin_router.post('/', controller.admin_signup);
  *           schema:
  *             type: object
  *             properties:
- *               admin_name:
+ *               admin_account:
  *                 type: string
  *               password:
  *                 type: string
@@ -123,7 +123,7 @@ admin_router.post('/', controller.admin_signup);
  *                 value:
  *                   status: 200
  *                   message: "success"
- *                   data: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInVzZXJfYWNjb3VudCI6InRlc3QyIiwiZW1haWwiOiIxMjM0NUBnbWFpbC5jb20iLCJjcmVhdGVkQXQiOiIyMDI0LTEwLTEwVDAyOjQyOjQ0LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDI0LTEwLTEwVDAyOjQyOjQ0LjAwMFoiLCJpYXQiOjE3Mjg1MjgxNzF9.OV4_pgZS3usEb0lmdraEsFWo94YAV2OaRwyMw_1NwJE"
+ *                   data: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
  *       400:
  *         description: 로그인 실패
  *         content:
@@ -151,6 +151,8 @@ admin_router.post('/admin_login', controller.admin_login);
  *   get:
  *     tags: [관리자]
  *     summary: 관리자 전체 조회
+ *     security:
+ *       - api_key: []
  *     responses:
  *       200:
  *         description: 성공 예시
@@ -192,6 +194,8 @@ admin_router.get('/',AdminAuth,controller.find_all)
  *   get:
  *     tags: [관리자]
  *     summary: 관리자 단일 조회
+ *     security:
+ *       - api_key: []
  *     parameters:
  *       - name: admin_id
  *         in: path
@@ -244,6 +248,8 @@ admin_router.get('/:admin_id',AdminAuth,controller.find)
  *   put:
  *     tags: [관리자]
  *     summary: 관리자 수정
+ *     security:
+ *       - api_key: []
  *     parameters:
  *       - name: admin_id
  *         in: path
@@ -308,7 +314,7 @@ admin_router.get('/:admin_id',AdminAuth,controller.find)
  *                   status: 400
  *                   message: "server error"
  */
-admin_router.put('/:admin_id',controller.update)
+admin_router.put('/:admin_id',AdminAuth,controller.update)
 
 /**
  * @swagger
@@ -316,6 +322,8 @@ admin_router.put('/:admin_id',controller.update)
  *   delete:
  *     tags: [관리자]
  *     summary: 관리자 삭제
+ *     security:
+ *       - api_key: []
  *     parameters:
  *       - name: admin_id
  *         in: path
@@ -357,6 +365,6 @@ admin_router.put('/:admin_id',controller.update)
  *                   status: 400
  *                   message: "server error"
  */
-admin_router.delete('/:admin_id',controller.delete)
+admin_router.delete('/:admin_id',AdminAuth,controller.delete)
 
 module.exports = admin_router;

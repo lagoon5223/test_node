@@ -34,10 +34,13 @@ module.exports = (sequelize, DataTypes)=>{
     },{
         // 한글을 쓸수 있게 해준다.(한글 저장)
         tableName: 'admin',
+        freezeTableName:false,
         charset: 'utf8',
         collate: 'utf8_general_ci' 
     });
-    Admin.associate = (db) => {}
+    Admin.associate = (db) => {
+        Admin.hasMany(db.Announcement,{foreignKey : "admin_id"})
+    }
     return Admin;
   }
   

@@ -9,6 +9,7 @@ const User =  require('./user')
 const Image = require('./image')
 const Mail = require('./mail')
 const Sms = require('./sms')
+const Announcement =require('./announcement')
 const db = {};
 
 //아래 설정을 통해 sequelize 가 노드랑 sql을 연결해준다.
@@ -20,6 +21,7 @@ db.Board = Board(sequelize, Sequelize)//테이블을 만들어 줄 수 있다.
 db.Image = Image(sequelize,Sequelize)
 db.Mail = Mail(sequelize,Sequelize)
 db.Sms = Sms(sequelize,Sequelize)
+db.Announcement =Announcement(sequelize,Sequelize);
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {

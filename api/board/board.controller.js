@@ -18,7 +18,7 @@ class board_controller {
             const result = await this.boardservice.find_all(req.query);
             res.status(200).json({ status: 200, message: 'success', data: result })
         } catch (e) {
-            throw e;
+            res.status(200).json({ status: 200, message: 'sever error', data: e.message })
         }
     }
 

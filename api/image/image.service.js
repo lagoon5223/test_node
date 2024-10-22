@@ -43,8 +43,7 @@ class image_service {//컨트롤러가 전해준 요청을 응답해줄 함수�
             const { user_id } = query;
             if(!user_id){
                 const result = await Image.findAll();
-                console.log(result)
-                if(result.length === 0)throw new Error("파일이 없음.")
+                if(!result.length === 0)throw new Error("파일이 없음.")
                 return result;
             }
             const result = await Image.findAll({
